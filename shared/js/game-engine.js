@@ -92,12 +92,19 @@ class GameEngine {
     this.state.score = Math.max(0, this.state.score + points);
     this.updateScoreUI();
     this.trigger('onScoreChange', this.state.score);
+    if (points > 0) {
+      this.showFloatingScorePopup(points);
+    }
   }
 
   setLevel(level) {
+    const prevLevel = this.state.level;
     this.state.level = Math.min(this.maxLevels, Math.max(1, level));
     this.updateLevelUI();
     this.trigger('onLevelChange', this.state.level);
+    if (level > prevLevel) {
+      this.showLevelPopup(level);
+    }
   }
 
   decrementLives() {
@@ -221,5 +228,90 @@ class GameEngine {
       const pct = (this.state.timeLeft / this.timeLimit) * 100;
       fillEl.style.width = `${pct}%`;
     }
+  }
+
+  showFloatingScorePopup(points) {
+    const scoreValEl = document.getElementById('score-val');
+    if (!scoreValEl) return;
+    
+    const popup = document.createElement('div');
+    popup.className = 'floating-score-popup';
+    popup.textContent = `+${points}`;
+    
+    popup.style.position = 'absolute';
+    popup.style.color = '#34d399'; // beautiful success green
+    popup.style.fontWeight = '800';
+    popup.style.fontSize = '1.3rem';
+    popup.style.pointerEvents = 'none';
+    popup.style.zIndex = '9999';
+    popup.style.textShadow = '0 0 10px rgba(52, 211, 153, 0.6)';
+    popup.style.transition = 'all 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28)';
+    
+    const rect = scoreValEl.getBoundingClientRect();
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    popup.style.left = `${rect.left + scrollLeft + rect.width / 2}px`;
+    popup.style.top = `${rect.top + scrollTop - 10}px`;
+    popup.style.transform = 'translate(-50%, 0) scale(0.5)';
+    popup.style.opacity = '0';
+    
+    document.body.appendChild(popup);
+    
+    requestAnimationFrame(() => {
+      popup.style.transform = 'translate(-50%, -30px) scale(1.2)';
+      popup.style.opacity = '1';
+    });
+    
+    setTimeout(() => {
+      popup.style.opacity = '0';
+      popup.style.transform = 'translate(-50%, -50px) scale(0.8)';
+      setTimeout(() => {
+        popup.remove();
+      }, 300);
+    }, 600);
+  }
+
+  showLevelPopup(level) {
+    const popup = document.createElement('div');
+    popup.className = 'floating-level-popup';
+    
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%) scale(0.2)';
+    popup.style.background = 'rgba(15, 23, 42, 0.9)';
+    popup.style.backdropFilter = 'blur(12px)';
+    popup.style.webkitBackdropFilter = 'blur(12px)';
+    popup.style.border = '2px solid #8b5cf6'; // Violet border
+    popup.style.boxShadow = '0 10px 40px rgba(139, 92, 246, 0.5), inset 0 0 15px rgba(139, 92, 246, 0.2)';
+    popup.style.borderRadius = '16px';
+    popup.style.padding = '1rem 2rem';
+    popup.style.color = '#ffffff';
+    popup.style.textAlign = 'center';
+    popup.style.zIndex = '10000';
+    popup.style.pointerEvents = 'none';
+    popup.style.opacity = '0';
+    popup.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    
+    popup.innerHTML = `
+      <div style="font-size: 0.75rem; color: #a78bfa; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 4px;">Training Progress</div>
+      <h2 style="font-size: 1.8rem; margin: 0; background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; font-family: Outfit, sans-serif;">Level ${level} Activated!</h2>
+    `;
+    
+    document.body.appendChild(popup);
+    
+    requestAnimationFrame(() => {
+      popup.style.transform = 'translate(-50%, -50%) scale(1)';
+      popup.style.opacity = '1';
+    });
+    
+    setTimeout(() => {
+      popup.style.transform = 'translate(-50%, -50%) scale(0.8)';
+      popup.style.opacity = '0';
+      setTimeout(() => {
+        popup.remove();
+      }, 500);
+    }, 1500);
   }
 }

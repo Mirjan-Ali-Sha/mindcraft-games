@@ -927,6 +927,841 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       ]
+    },
+    {
+      // LEVEL 7: Autumn Park
+      name: 'Autumn Park',
+      drawBackground: (ctx) => {
+        // Sky: Soft warm orange gradient
+        const autumnSky = ctx.createLinearGradient(0, 0, 0, 200);
+        autumnSky.addColorStop(0, '#ffedd5');
+        autumnSky.addColorStop(1, '#ffcbd1');
+        ctx.fillStyle = autumnSky;
+        ctx.fillRect(0, 0, 400, 300);
+        
+        // Sun: soft reddish orange
+        ctx.beginPath();
+        ctx.arc(330, 60, 20, 0, Math.PI * 2);
+        ctx.fillStyle = '#f97316';
+        ctx.fill();
+
+        // Hills: warm brown / golden orange
+        ctx.beginPath();
+        ctx.moveTo(-20, 220);
+        ctx.quadraticCurveTo(120, 190, 280, 230);
+        ctx.quadraticCurveTo(340, 210, 420, 230);
+        ctx.lineTo(420, 310);
+        ctx.lineTo(-20, 310);
+        ctx.fillStyle = '#b45309';
+        ctx.fill();
+
+        // Trunk of Autumn Tree
+        ctx.fillStyle = '#451a03';
+        ctx.fillRect(80, 160, 16, 80);
+        
+        // Tree foliage: layered red/orange/yellow
+        ctx.beginPath();
+        ctx.arc(88, 140, 32, 0, Math.PI * 2);
+        ctx.arc(68, 120, 28, 0, Math.PI * 2);
+        ctx.arc(108, 120, 28, 0, Math.PI * 2);
+        ctx.fillStyle = '#ea580c';
+        ctx.fill();
+      },
+      differences: [
+        {
+          id: 0, x: 260, y: 250, r: 20, // Bench color
+          drawOriginal: (ctx) => {
+            // Brown bench
+            ctx.fillStyle = '#78350f';
+            ctx.fillRect(240, 240, 40, 10);
+            ctx.fillRect(245, 250, 4, 12);
+            ctx.fillRect(271, 250, 4, 12);
+          },
+          drawDifference: (ctx) => {
+            // Bright red bench (Difference)
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(240, 240, 40, 10);
+            ctx.fillRect(245, 250, 4, 12);
+            ctx.fillRect(271, 250, 4, 12);
+          }
+        },
+        {
+          id: 1, x: 190, y: 275, r: 18, // Duck on pond
+          drawOriginal: (ctx) => {
+            // Pond
+            ctx.fillStyle = '#0284c7';
+            ctx.beginPath();
+            ctx.ellipse(190, 275, 30, 10, 0, 0, Math.PI * 2);
+            ctx.fill();
+            // Yellow Duck
+            ctx.fillStyle = '#facc15';
+            ctx.beginPath();
+            ctx.arc(190, 270, 5, 0, Math.PI * 2); // Head
+            ctx.ellipse(186, 273, 8, 5, 0, 0, Math.PI * 2); // Body
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Pond with NO duck!
+            ctx.fillStyle = '#0284c7';
+            ctx.beginPath();
+            ctx.ellipse(190, 275, 30, 10, 0, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        },
+        {
+          id: 2, x: 108, y: 110, r: 18, // Extra golden apple/leaf in tree
+          drawOriginal: (ctx) => {
+            // Just foliage
+          },
+          drawDifference: (ctx) => {
+            // Glowing yellow leaf/fruit
+            ctx.beginPath();
+            ctx.arc(104, 114, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#fde047';
+            ctx.fill();
+          }
+        },
+        {
+          id: 3, x: 220, y: 70, r: 20, // Autumn Cloud
+          drawOriginal: (ctx) => {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.beginPath();
+            ctx.arc(210, 70, 10, 0, Math.PI * 2);
+            ctx.arc(222, 65, 12, 0, Math.PI * 2);
+            ctx.arc(234, 70, 10, 0, Math.PI * 2);
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Cloud is missing!
+          }
+        },
+        {
+          id: 4, x: 140, y: 235, r: 16, // Pile of fallen leaves
+          drawOriginal: (ctx) => {
+            // Little orange dot leaves
+            ctx.fillStyle = '#d97706';
+            ctx.fillRect(135, 235, 4, 4);
+            ctx.fillRect(142, 238, 4, 4);
+            ctx.fillStyle = '#ca8a04';
+            ctx.fillRect(146, 234, 4, 4);
+          },
+          drawDifference: (ctx) => {
+            // Empty ground
+          }
+        }
+      ]
+    },
+    {
+      // LEVEL 8: Sunset Beach
+      name: 'Sunset Beach',
+      drawBackground: (ctx) => {
+        // Sky: Tropical sunset gradient
+        const beachSky = ctx.createLinearGradient(0, 0, 0, 180);
+        beachSky.addColorStop(0, '#701a75'); // Dark magenta
+        beachSky.addColorStop(0.6, '#db2777'); // Pink
+        beachSky.addColorStop(1, '#facc15'); // Yellow
+        ctx.fillStyle = beachSky;
+        ctx.fillRect(0, 0, 400, 300);
+
+        // Sun setting
+        ctx.beginPath();
+        ctx.arc(200, 170, 30, Math.PI, 0);
+        ctx.fillStyle = '#f97316';
+        ctx.fill();
+
+        // Ocean
+        ctx.fillStyle = '#0369a1';
+        ctx.fillRect(0, 170, 400, 70);
+
+        // Sandy Beach
+        ctx.beginPath();
+        ctx.moveTo(-10, 220);
+        ctx.quadraticCurveTo(180, 190, 410, 240);
+        ctx.lineTo(410, 310);
+        ctx.lineTo(-10, 310);
+        ctx.fillStyle = '#fef08a';
+        ctx.fill();
+      },
+      differences: [
+        {
+          id: 0, x: 100, y: 150, r: 22, // Sailboat
+          drawOriginal: (ctx) => {
+            // Sailboat with white sail
+            ctx.fillStyle = '#78350f'; // Hull
+            ctx.beginPath();
+            ctx.moveTo(85, 155);
+            ctx.lineTo(115, 155);
+            ctx.lineTo(110, 162);
+            ctx.lineTo(90, 162);
+            ctx.closePath();
+            ctx.fill();
+
+            // Mast
+            ctx.fillRect(99, 142, 2, 13);
+
+            // Sail
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.moveTo(101, 142);
+            ctx.lineTo(112, 153);
+            ctx.lineTo(101, 153);
+            ctx.closePath();
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Sailboat with YELLOW sail (Difference)
+            ctx.fillStyle = '#78350f'; // Hull
+            ctx.beginPath();
+            ctx.moveTo(85, 155);
+            ctx.lineTo(115, 155);
+            ctx.lineTo(110, 162);
+            ctx.lineTo(90, 162);
+            ctx.closePath();
+            ctx.fill();
+
+            // Mast
+            ctx.fillRect(99, 142, 2, 13);
+
+            // Sail
+            ctx.fillStyle = '#fde047';
+            ctx.beginPath();
+            ctx.moveTo(101, 142);
+            ctx.lineTo(112, 153);
+            ctx.lineTo(101, 153);
+            ctx.closePath();
+            ctx.fill();
+          }
+        },
+        {
+          id: 1, x: 310, y: 250, r: 20, // Beach ball
+          drawOriginal: (ctx) => {
+            // Red and white beach ball
+            ctx.beginPath();
+            ctx.arc(310, 250, 10, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(310, 250, 10, -Math.PI/2, Math.PI/2);
+            ctx.fillStyle = '#ef4444';
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Blue and white beach ball
+            ctx.beginPath();
+            ctx.arc(310, 250, 10, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(310, 250, 10, -Math.PI/2, Math.PI/2);
+            ctx.fillStyle = '#3b82f6';
+            ctx.fill();
+          }
+        },
+        {
+          id: 2, x: 50, y: 190, r: 25, // Palm leaves shape
+          drawOriginal: (ctx) => {
+            // Palm tree
+            ctx.strokeStyle = '#78350f';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(30, 240);
+            ctx.quadraticCurveTo(40, 200, 50, 180);
+            ctx.stroke();
+
+            ctx.fillStyle = '#16a34a';
+            ctx.beginPath();
+            ctx.ellipse(50, 180, 18, 6, -0.5, 0, Math.PI*2);
+            ctx.ellipse(50, 180, 18, 6, 0.5, 0, Math.PI*2);
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // No palm leaves at all! (Difference)
+            ctx.strokeStyle = '#78350f';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(30, 240);
+            ctx.quadraticCurveTo(40, 200, 50, 180);
+            ctx.stroke();
+          }
+        },
+        {
+          id: 3, x: 200, y: 190, r: 18, // Sun reflection length
+          drawOriginal: (ctx) => {
+            // Yellow sun reflection in water
+            ctx.fillStyle = 'rgba(253, 224, 71, 0.5)';
+            ctx.fillRect(170, 175, 60, 4);
+            ctx.fillRect(180, 182, 40, 4);
+          },
+          drawDifference: (ctx) => {
+            // No reflection! (Difference)
+          }
+        },
+        {
+          id: 4, x: 330, y: 60, r: 18, // Flying seagull
+          drawOriginal: (ctx) => {
+            // Seagull (v-shape)
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(320, 60);
+            ctx.quadraticCurveTo(327, 52, 330, 60);
+            ctx.quadraticCurveTo(333, 52, 340, 60);
+            ctx.stroke();
+          },
+          drawDifference: (ctx) => {
+            // No seagull!
+          }
+        }
+      ]
+    },
+    {
+      // LEVEL 9: Ancient Ruins
+      name: 'Ancient Ruins',
+      drawBackground: (ctx) => {
+        // Sky: Teal gradient
+        const ruinsSky = ctx.createLinearGradient(0, 0, 0, 200);
+        ruinsSky.addColorStop(0, '#115e59');
+        ruinsSky.addColorStop(1, '#ccfbf1');
+        ctx.fillStyle = ruinsSky;
+        ctx.fillRect(0, 0, 400, 300);
+
+        // Sun: pale yellow
+        ctx.beginPath();
+        ctx.arc(80, 80, 18, 0, Math.PI * 2);
+        ctx.fillStyle = '#fef08a';
+        ctx.fill();
+
+        // Jungle mountains in background
+        ctx.fillStyle = '#064e3b';
+        ctx.beginPath();
+        ctx.moveTo(-10, 200);
+        ctx.lineTo(100, 130);
+        ctx.lineTo(210, 200);
+        ctx.fill();
+        
+        ctx.fillStyle = '#022c22';
+        ctx.beginPath();
+        ctx.moveTo(150, 200);
+        ctx.lineTo(260, 110);
+        ctx.lineTo(380, 200);
+        ctx.fill();
+
+        // Stone foundation
+        ctx.fillStyle = '#475569';
+        ctx.fillRect(0, 200, 400, 110);
+        ctx.fillStyle = '#334155';
+        ctx.fillRect(0, 200, 400, 6);
+      },
+      differences: [
+        {
+          id: 0, x: 140, y: 150, r: 25, // Left Pillar height
+          drawOriginal: (ctx) => {
+            // Tall pillar
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(125, 110, 30, 90);
+            ctx.fillStyle = '#cbd5e1';
+            ctx.fillRect(120, 105, 40, 8);
+          },
+          drawDifference: (ctx) => {
+            // Broken shorter pillar (Difference)
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(125, 140, 30, 60);
+            ctx.fillStyle = '#64748b'; // jagged top
+            ctx.beginPath();
+            ctx.moveTo(125, 140);
+            ctx.lineTo(135, 146);
+            ctx.lineTo(145, 138);
+            ctx.lineTo(155, 140);
+            ctx.lineTo(155, 145);
+            ctx.closePath();
+            ctx.fill();
+          }
+        },
+        {
+          id: 1, x: 280, y: 140, r: 22, // Ivy climber on right pillar
+          drawOriginal: (ctx) => {
+            // Right pillar
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(265, 110, 30, 90);
+            ctx.fillStyle = '#cbd5e1';
+            ctx.fillRect(260, 105, 40, 8);
+
+            // Climbing green ivy leaf
+            ctx.fillStyle = '#10b981';
+            ctx.beginPath();
+            ctx.arc(280, 150, 6, 0, Math.PI*2);
+            ctx.arc(275, 160, 5, 0, Math.PI*2);
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Right pillar with NO ivy leaves (Difference)
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(265, 110, 30, 90);
+            ctx.fillStyle = '#cbd5e1';
+            ctx.fillRect(260, 105, 40, 8);
+          }
+        },
+        {
+          id: 2, x: 200, y: 240, r: 20, // Treasure Jar
+          drawOriginal: (ctx) => {
+            // Old golden jar sitting on foundation
+            ctx.fillStyle = '#d97706';
+            ctx.beginPath();
+            ctx.arc(200, 240, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(195, 227, 10, 4);
+          },
+          drawDifference: (ctx) => {
+            // No jar!
+          }
+        },
+        {
+          id: 3, x: 330, y: 70, r: 18, // Tropical bird
+          drawOriginal: (ctx) => {
+            // Small red bird in sky
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(330, 70, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(322, 69, 8, 3);
+          },
+          drawDifference: (ctx) => {
+            // Bird is missing!
+          }
+        },
+        {
+          id: 4, x: 40, y: 230, r: 18, // Cracked stone lines
+          drawOriginal: (ctx) => {
+            // Solid crack lines
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(25, 220);
+            ctx.lineTo(40, 235);
+            ctx.lineTo(35, 250);
+            ctx.stroke();
+          },
+          drawDifference: (ctx) => {
+            // Clean stone with no cracks
+          }
+        }
+      ]
+    },
+    {
+      // LEVEL 10: Cozy Fireplace
+      name: 'Cozy Fireplace',
+      drawBackground: (ctx) => {
+        // Room background (Dark warm grey)
+        ctx.fillStyle = '#1c1917';
+        ctx.fillRect(0, 0, 400, 300);
+
+        // Brick fireplace arch structure
+        ctx.fillStyle = '#78716c';
+        ctx.fillRect(100, 120, 200, 150);
+
+        // Fireplace opening
+        ctx.fillStyle = '#0c0a09';
+        ctx.fillRect(130, 160, 140, 110);
+
+        // Mantelpiece shelf
+        ctx.fillStyle = '#44403c';
+        ctx.fillRect(80, 110, 240, 12);
+      },
+      differences: [
+        {
+          id: 0, x: 200, y: 210, r: 25, // Fire flame intensity
+          drawOriginal: (ctx) => {
+            // Cozy orange-red flames on logs
+            ctx.fillStyle = '#78350f'; // Logs
+            ctx.fillRect(150, 240, 100, 15);
+
+            ctx.fillStyle = '#ea580c';
+            ctx.beginPath();
+            ctx.moveTo(160, 240);
+            ctx.quadraticCurveTo(200, 170, 240, 240);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = '#facc15'; // yellow inner core
+            ctx.beginPath();
+            ctx.moveTo(180, 240);
+            ctx.quadraticCurveTo(200, 195, 220, 240);
+            ctx.closePath();
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Small fire, almost out (Difference)
+            ctx.fillStyle = '#78350f'; // Logs
+            ctx.fillRect(150, 240, 100, 15);
+
+            ctx.fillStyle = '#b45309';
+            ctx.beginPath();
+            ctx.moveTo(175, 240);
+            ctx.quadraticCurveTo(200, 220, 225, 240);
+            ctx.closePath();
+            ctx.fill();
+          }
+        },
+        {
+          id: 1, x: 120, y: 90, r: 18, // Mantel Clock
+          drawOriginal: (ctx) => {
+            // Gold mantel clock
+            ctx.fillStyle = '#eab308';
+            ctx.fillRect(110, 85, 20, 25);
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(120, 93, 7, 0, Math.PI * 2);
+            ctx.fill();
+            // Hands pointing 3 o'clock
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(120, 93);
+            ctx.lineTo(120, 89);
+            ctx.moveTo(120, 93);
+            ctx.lineTo(125, 93);
+            ctx.stroke();
+          },
+          drawDifference: (ctx) => {
+            // Hands pointing 6 o'clock (Difference)
+            ctx.fillStyle = '#eab308';
+            ctx.fillRect(110, 85, 20, 25);
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(120, 93, 7, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(120, 93);
+            ctx.lineTo(120, 89);
+            ctx.moveTo(120, 93);
+            ctx.lineTo(120, 98);
+            ctx.stroke();
+          }
+        },
+        {
+          id: 2, x: 280, y: 130, r: 18, // Hanging Stocking
+          drawOriginal: (ctx) => {
+            // Red stocking hanging from mantel
+            ctx.fillStyle = '#dc2626';
+            ctx.fillRect(275, 122, 10, 16);
+            ctx.fillRect(275, 134, 16, 8);
+          },
+          drawDifference: (ctx) => {
+            // Green stocking hanging (Difference)
+            ctx.fillStyle = '#16a34a';
+            ctx.fillRect(275, 122, 10, 16);
+            ctx.fillRect(275, 134, 16, 8);
+          }
+        },
+        {
+          id: 3, x: 230, y: 80, r: 16, // Picture frame on brick wall
+          drawOriginal: (ctx) => {
+            // Empty wall space
+          },
+          drawDifference: (ctx) => {
+            // Small brown picture frame
+            ctx.fillStyle = '#7c2d12';
+            ctx.fillRect(215, 65, 30, 22);
+            ctx.fillStyle = '#38bdf8'; // Blue painting inside
+            ctx.fillRect(219, 69, 22, 14);
+          }
+        },
+        {
+          id: 4, x: 50, y: 260, r: 25, // Cosy rug color
+          drawOriginal: (ctx) => {
+            // Red rug on floor
+            ctx.fillStyle = '#991b1b';
+            ctx.beginPath();
+            ctx.ellipse(60, 275, 50, 15, 0, 0, Math.PI * 2);
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Blue rug on floor (Difference)
+            ctx.fillStyle = '#1e3a8a';
+            ctx.beginPath();
+            ctx.ellipse(60, 275, 50, 15, 0, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      ]
+    },
+    {
+      // LEVEL 11: Alien Planet
+      name: 'Alien Planet',
+      drawBackground: (ctx) => {
+        // Deep purple sky
+        const alienSky = ctx.createLinearGradient(0, 0, 0, 220);
+        alienSky.addColorStop(0, '#1e1b4b');
+        alienSky.addColorStop(1, '#581c87');
+        ctx.fillStyle = alienSky;
+        ctx.fillRect(0, 0, 400, 300);
+
+        // Ground: neon green/yellow landscape
+        ctx.fillStyle = '#064e3b';
+        ctx.beginPath();
+        ctx.moveTo(-10, 220);
+        ctx.quadraticCurveTo(100, 250, 240, 210);
+        ctx.quadraticCurveTo(340, 230, 410, 210);
+        ctx.lineTo(410, 310);
+        ctx.lineTo(-10, 310);
+        ctx.fill();
+      },
+      differences: [
+        {
+          id: 0, x: 260, y: 80, r: 25, // Moon count
+          drawOriginal: (ctx) => {
+            // Cyan ringed moon
+            ctx.beginPath();
+            ctx.arc(260, 80, 18, 0, Math.PI * 2);
+            ctx.fillStyle = '#22d3ee';
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Cyan ringed moon AND a tiny magenta moon next to it (Difference)
+            ctx.beginPath();
+            ctx.arc(260, 80, 18, 0, Math.PI * 2);
+            ctx.fillStyle = '#22d3ee';
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(295, 65, 8, 0, Math.PI * 2);
+            ctx.fillStyle = '#ec4899';
+            ctx.fill();
+          }
+        },
+        {
+          id: 1, x: 90, y: 160, r: 22, // Alien Plant tree
+          drawOriginal: (ctx) => {
+            // Spiral purple mushroom tree
+            ctx.fillStyle = '#7c3aed';
+            ctx.fillRect(86, 170, 8, 50);
+            ctx.beginPath();
+            ctx.arc(90, 160, 20, 0, Math.PI * 2);
+            ctx.fillStyle = '#a78bfa';
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Spiral yellow mushroom tree (Difference)
+            ctx.fillStyle = '#d97706';
+            ctx.fillRect(86, 170, 8, 50);
+            ctx.beginPath();
+            ctx.arc(90, 160, 20, 0, Math.PI * 2);
+            ctx.fillStyle = '#fbbf24';
+            ctx.fill();
+          }
+        },
+        {
+          id: 2, x: 310, y: 240, r: 20, // Glowing crystal colors
+          drawOriginal: (ctx) => {
+            // Cyan crystal shards
+            ctx.fillStyle = '#06b6d4';
+            ctx.beginPath();
+            ctx.moveTo(300, 250);
+            ctx.lineTo(310, 215);
+            ctx.lineTo(320, 250);
+            ctx.closePath();
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Pink crystal shards (Difference)
+            ctx.fillStyle = '#ec4899';
+            ctx.beginPath();
+            ctx.moveTo(300, 250);
+            ctx.lineTo(310, 215);
+            ctx.lineTo(320, 250);
+            ctx.closePath();
+            ctx.fill();
+          }
+        },
+        {
+          id: 3, x: 120, y: 50, r: 18, // Space saucer UFO
+          drawOriginal: (ctx) => {
+            // Empty space
+          },
+          drawDifference: (ctx) => {
+            // Glowing cyan saucer
+            ctx.fillStyle = '#cbd5e1';
+            ctx.beginPath();
+            ctx.ellipse(120, 50, 14, 5, 0, 0, Math.PI*2);
+            ctx.fill();
+            ctx.fillStyle = '#22d3ee';
+            ctx.beginPath();
+            ctx.arc(120, 48, 4, Math.PI, 0);
+            ctx.fill();
+          }
+        },
+        {
+          id: 4, x: 210, y: 260, r: 16, // Alien peek eyes in ground crater
+          drawOriginal: (ctx) => {
+            // Empty crater outline
+            ctx.fillStyle = '#022c22';
+            ctx.beginPath();
+            ctx.ellipse(210, 260, 12, 4, 0, 0, Math.PI*2);
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Eyes peeking out of crater (Difference)
+            ctx.fillStyle = '#022c22';
+            ctx.beginPath();
+            ctx.ellipse(210, 260, 12, 4, 0, 0, Math.PI*2);
+            ctx.fill();
+
+            // Two neon yellow glowing eyes
+            ctx.fillStyle = '#fde047';
+            ctx.beginPath();
+            ctx.arc(207, 260, 2, 0, Math.PI*2);
+            ctx.arc(213, 260, 2, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+      ]
+    },
+    {
+      // LEVEL 12: Underground Cave
+      name: 'Underground Cave',
+      drawBackground: (ctx) => {
+        // Dark cave rocky background
+        ctx.fillStyle = '#292524';
+        ctx.fillRect(0, 0, 400, 300);
+
+        // Stalactites hanging down
+        ctx.fillStyle = '#44403c';
+        // Shape 1
+        ctx.beginPath();
+        ctx.moveTo(30, 0);
+        ctx.lineTo(50, 70);
+        ctx.lineTo(70, 0);
+        ctx.closePath();
+        ctx.fill();
+        // Shape 2
+        ctx.beginPath();
+        ctx.moveTo(280, 0);
+        ctx.lineTo(310, 90);
+        ctx.lineTo(340, 0);
+        ctx.closePath();
+        ctx.fill();
+
+        // Glowing subterranean cyan water pool
+        ctx.fillStyle = '#134e5e';
+        ctx.beginPath();
+        ctx.moveTo(-10, 240);
+        ctx.quadraticCurveTo(150, 210, 410, 240);
+        ctx.lineTo(410, 310);
+        ctx.lineTo(-10, 310);
+        ctx.fill();
+      },
+      differences: [
+        {
+          id: 0, x: 170, y: 40, r: 22, // Middle Stalactite
+          drawOriginal: (ctx) => {
+            // Empty roof
+          },
+          drawDifference: (ctx) => {
+            // New stalactite hanging (Difference)
+            ctx.fillStyle = '#44403c';
+            ctx.beginPath();
+            ctx.moveTo(150, 0);
+            ctx.lineTo(170, 50);
+            ctx.lineTo(190, 0);
+            ctx.closePath();
+            ctx.fill();
+          }
+        },
+        {
+          id: 1, x: 100, y: 190, r: 20, // Glowing mushrooms
+          drawOriginal: (ctx) => {
+            // Green glowing mushrooms
+            ctx.fillStyle = '#22c55e';
+            ctx.beginPath();
+            ctx.arc(95, 195, 6, Math.PI, 0);
+            ctx.arc(105, 192, 5, Math.PI, 0);
+            ctx.fill();
+            // Stems
+            ctx.fillStyle = '#e2e8f0';
+            ctx.fillRect(94, 195, 2, 8);
+            ctx.fillRect(104, 192, 2, 10);
+          },
+          drawDifference: (ctx) => {
+            // Violet glowing mushrooms (Difference)
+            ctx.fillStyle = '#a855f7';
+            ctx.beginPath();
+            ctx.arc(95, 195, 6, Math.PI, 0);
+            ctx.arc(105, 192, 5, Math.PI, 0);
+            ctx.fill();
+            // Stems
+            ctx.fillStyle = '#e2e8f0';
+            ctx.fillRect(94, 195, 2, 8);
+            ctx.fillRect(104, 192, 2, 10);
+          }
+        },
+        {
+          id: 2, x: 230, y: 220, r: 20, // Floating bat
+          drawOriginal: (ctx) => {
+            // Small bat silhouette near the cave ceiling
+            ctx.fillStyle = '#0f172a';
+            ctx.beginPath();
+            ctx.ellipse(230, 80, 8, 4, 0, 0, Math.PI*2);
+            ctx.fill();
+            // Wings
+            ctx.beginPath();
+            ctx.moveTo(222, 80);
+            ctx.lineTo(214, 70);
+            ctx.lineTo(225, 78);
+            ctx.moveTo(238, 80);
+            ctx.lineTo(246, 70);
+            ctx.lineTo(235, 78);
+            ctx.fill();
+          },
+          drawDifference: (ctx) => {
+            // Bat is missing! (Difference)
+          }
+        },
+        {
+          id: 3, x: 330, y: 260, r: 18, // Water lily/reflection rings
+          drawOriginal: (ctx) => {
+            // Reflection rings on cyan pool
+            ctx.strokeStyle = 'rgba(34, 211, 238, 0.4)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.ellipse(330, 260, 20, 6, 0, 0, Math.PI*2);
+            ctx.stroke();
+          },
+          drawDifference: (ctx) => {
+            // No reflection rings!
+          }
+        },
+        {
+          id: 4, x: 45, y: 110, r: 20, // Hanging spider web
+          drawOriginal: (ctx) => {
+            // Empty space under left stalactite
+          },
+          drawDifference: (ctx) => {
+            // Spider web line
+            ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(50, 70);
+            ctx.lineTo(50, 115);
+            ctx.stroke();
+
+            // Tiny red spider body
+            ctx.fillStyle = '#ef4444';
+            ctx.beginPath();
+            ctx.arc(50, 115, 3, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+      ]
     }
   ];
 

@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: 'bubble-math',
-      name: 'Bubble Math (Add to 10)',
+      name: 'Bubble Math',
       desc: 'Pop bubble pairs that sum up to 10. Quick math calculations are needed!',
       tag: 'Math',
       url: './games/bubble-math/index.html',
