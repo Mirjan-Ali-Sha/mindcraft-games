@@ -1091,14 +1091,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const clickX = (e.clientX - rect.left) * scaleX;
     const clickY = (e.clientY - rect.top) * scaleY;
 
+    // Show visual tap marker at the exact click position
+    showTapMarker(canvas, clickX, clickY);
+
     // Check if clicked near any differences
+    // Use a minimum effective radius to ensure mobile touch targets are large enough
+    const MIN_TAP_RADIUS = 22;
     let hitDifference = false;
 
     for (let i = 0; i < currentLevelData.differences.length; i++) {
       const diff = currentLevelData.differences[i];
       const dist = Math.hypot(clickX - diff.x, clickY - diff.y);
+      const effectiveRadius = Math.max(diff.r, MIN_TAP_RADIUS);
 
-      if (dist <= diff.r) {
+      if (dist <= effectiveRadius) {
         hitDifference = true;
         if (!foundDifferences.includes(diff.id)) {
           // Found new difference!
@@ -1121,11 +1127,49 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Wrong click penalty
+    // Wrong click penalty (only if we didn't hit any difference zone)
     if (!hitDifference) {
       engine.decrementLives();
       flashCanvas(canvas, 'rgba(239, 68, 68, 0.25)');
     }
+  }
+
+  // Visual tap marker: shows a small crosshair at the exact tap position
+  function showTapMarker(canvas, x, y) {
+    const ctx = canvas === canvasLeft ? ctxLeft : ctxRight;
+    const markerSize = 8;
+
+    // Draw crosshair
+    ctx.save();
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+    ctx.shadowBlur = 3;
+
+    // Horizontal line
+    ctx.beginPath();
+    ctx.moveTo(x - markerSize, y);
+    ctx.lineTo(x + markerSize, y);
+    ctx.stroke();
+
+    // Vertical line
+    ctx.beginPath();
+    ctx.moveTo(x, y - markerSize);
+    ctx.lineTo(x, y + markerSize);
+    ctx.stroke();
+
+    // Center dot
+    ctx.beginPath();
+    ctx.arc(x, y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = '#ffffff';
+    ctx.fill();
+
+    ctx.restore();
+
+    // Clear the marker after a short delay by re-drawing the scene
+    setTimeout(() => {
+      drawScene();
+    }, 350);
   }
 
   // Visual feedback flash
@@ -1155,6 +1199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pointerStart = null;
     
     canvas.addEventListener('pointerdown', (e) => {
+      e.preventDefault(); // Prevent default browser behaviors (scroll, zoom)
       pointerStart = {
         x: e.clientX,
         y: e.clientY,
@@ -1163,15 +1208,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     canvas.addEventListener('pointerup', (e) => {
+      e.preventDefault();
       if (!pointerStart) return;
       const dx = e.clientX - pointerStart.x;
       const dy = e.clientY - pointerStart.y;
       const dist = Math.hypot(dx, dy);
       const elapsed = Date.now() - pointerStart.time;
       
-      // If finger moved less than 10 pixels and was down for less than 300ms, it's a valid tap
-      if (dist < 10 && elapsed < 300) {
-        handler(e);
+      // Finger moved less than 15px and held for less than 600ms = valid tap
+      // Mobile users often hold slightly longer than desktop clicks
+      if (dist < 15 && elapsed < 600) {
+        handler({
+          clientX: pointerStart.x,
+          clientY: pointerStart.y,
+          target: e.target
+        });
       }
       pointerStart = null;
     });

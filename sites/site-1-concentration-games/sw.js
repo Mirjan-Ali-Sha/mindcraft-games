@@ -1,5 +1,5 @@
 /* Site 1: Concentration Games - Service Worker */
-const CACHE_NAME = 'mindcraft-concentration-v9';
+const CACHE_NAME = 'mindcraft-concentration-v12';
 const ASSETS_TO_CACHE = [
   './index.html',
   './css/theme.css',

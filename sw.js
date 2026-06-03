@@ -1,5 +1,5 @@
 /* MindCraft Games Portal - Root Service Worker */
-const CACHE_NAME = 'mindcraft-portal-v5';
+const CACHE_NAME = 'mindcraft-portal-v7';
 const ASSETS_TO_CACHE = [
   './index.html',
   './manifest.json',

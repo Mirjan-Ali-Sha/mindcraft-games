@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let speedMultiplier = 1.0;
   let poppedPairsCount = 0;
   let targetPairsNeeded = 5;
+  
+  // Math operation state tracking
+  let currentOp = 'add'; // 'add' | 'sub' | 'mul'
+  let currentTarget = 10;
 
   const engine = new GameEngine(config);
 
@@ -112,7 +116,55 @@ document.addEventListener('DOMContentLoaded', () => {
     pairsPoppedEl.textContent = '0';
     pairsTotalEl.textContent = targetPairsNeeded.toString();
     
-    statusBanner.textContent = 'Pop pairs that add up to 10!';
+    // Set dynamic math operations and targets
+    if (levelNum === 1 || levelNum === 2) {
+      currentOp = 'add';
+      currentTarget = 10;
+    } else if (levelNum === 3) {
+      currentOp = 'add';
+      currentTarget = 12;
+    } else if (levelNum === 4 || levelNum === 5) {
+      currentOp = 'add';
+      currentTarget = 15;
+    } else if (levelNum === 6 || levelNum === 7) {
+      currentOp = 'sub';
+      currentTarget = 3;
+    } else if (levelNum === 8 || levelNum === 9) {
+      currentOp = 'sub';
+      currentTarget = 5;
+    } else if (levelNum === 10 || levelNum === 11) {
+      currentOp = 'mul';
+      currentTarget = 12;
+    } else if (levelNum === 12 || levelNum === 13) {
+      currentOp = 'mul';
+      currentTarget = 16;
+    } else if (levelNum === 14 || levelNum === 15) {
+      currentOp = 'mul';
+      currentTarget = 20;
+    } else {
+      const randVal = Math.floor(Math.random() * 3);
+      if (randVal === 0) {
+        currentOp = 'add';
+        currentTarget = 20;
+      } else if (randVal === 1) {
+        currentOp = 'sub';
+        currentTarget = 8;
+      } else {
+        currentOp = 'mul';
+        currentTarget = 24;
+      }
+    }
+
+    let targetText = '';
+    if (currentOp === 'add') {
+      targetText = `Pop pairs that add up to ${currentTarget}!`;
+    } else if (currentOp === 'sub') {
+      targetText = `Pop pairs with a difference of ${currentTarget}!`;
+    } else if (currentOp === 'mul') {
+      targetText = `Pop pairs that multiply to ${currentTarget}!`;
+    }
+    
+    statusBanner.textContent = targetText;
     statusBanner.style.color = 'var(--theme-accent)';
     
     generateInitialBubbles();
@@ -129,10 +181,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Helper to spawn a matching pair of bubbles
+  // Helper to spawn a matching pair of bubbles based on current operation
   function spawnPair() {
-    const num1 = Math.floor(Math.random() * 9) + 1; // 1..9
-    const num2 = 10 - num1; // always sums to 10
+    let num1, num2;
+    
+    if (currentOp === 'add') {
+      num1 = Math.floor(Math.random() * (currentTarget - 1)) + 1;
+      num2 = currentTarget - num1;
+    } else if (currentOp === 'sub') {
+      num2 = Math.floor(Math.random() * 10) + 1;
+      num1 = num2 + currentTarget;
+      if (Math.random() > 0.5) {
+        const temp = num1; num1 = num2; num2 = temp;
+      }
+    } else if (currentOp === 'mul') {
+      const factors = [];
+      for (let i = 1; i <= Math.sqrt(currentTarget); i++) {
+        if (currentTarget % i === 0) {
+          factors.push([i, currentTarget / i]);
+        }
+      }
+      const pair = factors[Math.floor(Math.random() * factors.length)];
+      num1 = pair[0];
+      num2 = pair[1];
+      if (Math.random() > 0.5) {
+        const temp = num1; num1 = num2; num2 = temp;
+      }
+    }
     
     const hue1 = Math.floor(Math.random() * 360);
     const hue2 = (hue1 + 180) % 360; // Complementary colors
@@ -230,13 +305,13 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.save();
       ctx.globalAlpha = b.opacity;
       
-      // Outer halo glow if selected
+      // Outer halo glow if selected (Highly visible glowing gold ring)
       if (b.isSelected) {
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.radius * b.scale + 6, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = 2;
+        ctx.arc(b.x, b.y, b.radius * b.scale + 8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(251, 191, 36, 0.25)'; // Gold glow fill
+        ctx.strokeStyle = '#fbbf24'; // Solid gold border
+        ctx.lineWidth = 3;
         ctx.stroke();
         ctx.fill();
       }
@@ -255,11 +330,11 @@ document.addEventListener('DOMContentLoaded', () => {
       radialGrad.addColorStop(1, 'rgba(15, 23, 42, 0.3)');
       
       ctx.fillStyle = radialGrad;
-      ctx.strokeStyle = b.borderColor;
-      ctx.lineWidth = b.isSelected ? 3 : 2;
+      ctx.strokeStyle = b.isSelected ? '#fbbf24' : b.borderColor;
+      ctx.lineWidth = b.isSelected ? 5 : 2;
       
-      ctx.shadowColor = b.borderColor;
-      ctx.shadowBlur = b.isSelected ? 15 : 6;
+      ctx.shadowColor = b.isSelected ? '#fbbf24' : b.borderColor;
+      ctx.shadowBlur = b.isSelected ? 25 : 6;
       
       ctx.fill();
       ctx.stroke();
@@ -376,7 +451,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const elapsed = Date.now() - pointerStart.time;
       
       if (dist < 10 && elapsed < 300) {
-        handler(e);
+        handler({
+          clientX: pointerStart.x,
+          clientY: pointerStart.y,
+          target: e.target
+        });
       }
       pointerStart = null;
     });
@@ -422,10 +501,17 @@ document.addEventListener('DOMContentLoaded', () => {
         firstSelected.isSelected = false;
         firstSelected = null;
       } else {
-        // Check sum matching exactly 10
-        const sum = firstSelected.number + clickedBubble.number;
+        // Check relation based on current operation
+        let isCorrect = false;
+        if (currentOp === 'add') {
+          isCorrect = (firstSelected.number + clickedBubble.number === currentTarget);
+        } else if (currentOp === 'sub') {
+          isCorrect = (Math.abs(firstSelected.number - clickedBubble.number) === currentTarget);
+        } else if (currentOp === 'mul') {
+          isCorrect = (firstSelected.number * clickedBubble.number === currentTarget);
+        }
         
-        if (sum === 10) {
+        if (isCorrect) {
           // Success Pop!
           firstSelected.isPopping = true;
           clickedBubble.isPopping = true;
@@ -460,14 +546,31 @@ document.addEventListener('DOMContentLoaded', () => {
           firstSelected = null;
           engine.decrementLives();
           
-          statusBanner.textContent = `Mismatch! ${sum} does not equal 10.`;
+          let errText = '';
+          if (currentOp === 'add') {
+            errText = `Mismatch! ${firstSelected.number} + ${clickedBubble.number} = ${firstSelected.number + clickedBubble.number} (needs ${currentTarget}).`;
+          } else if (currentOp === 'sub') {
+            errText = `Mismatch! |${firstSelected.number} - ${clickedBubble.number}| = ${Math.abs(firstSelected.number - clickedBubble.number)} (needs ${currentTarget}).`;
+          } else if (currentOp === 'mul') {
+            errText = `Mismatch! ${firstSelected.number} × ${clickedBubble.number} = ${firstSelected.number * clickedBubble.number} (needs ${currentTarget}).`;
+          }
+          
+          statusBanner.textContent = errText;
           statusBanner.style.color = 'var(--color-danger)';
           setTimeout(() => {
             if (engine.state.isPlaying && !engine.state.isPaused) {
-              statusBanner.textContent = 'Pop pairs that add up to 10!';
+              let targetText = '';
+              if (currentOp === 'add') {
+                targetText = `Pop pairs that add up to ${currentTarget}!`;
+              } else if (currentOp === 'sub') {
+                targetText = `Pop pairs with a difference of ${currentTarget}!`;
+              } else if (currentOp === 'mul') {
+                targetText = `Pop pairs that multiply to ${currentTarget}!`;
+              }
+              statusBanner.textContent = targetText;
               statusBanner.style.color = 'var(--theme-accent)';
             }
-          }, 1500);
+          }, 1800);
         }
       }
     }

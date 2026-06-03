@@ -83,11 +83,10 @@ canvas {
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-canvas:active {
-  border-color: var(--theme-accent);
-}
+/* canvas:active border removed — crosshair marker provides tap feedback */
 
 /* Lives representation styling */
 .heart {

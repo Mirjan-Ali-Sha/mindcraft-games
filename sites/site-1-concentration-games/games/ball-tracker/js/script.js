@@ -351,7 +351,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const elapsed = Date.now() - pointerStart.time;
       
       if (dist < 10 && elapsed < 300) {
-        handler(e);
+        handler({
+          clientX: pointerStart.x,
+          clientY: pointerStart.y,
+          target: e.target
+        });
       }
       pointerStart = null;
     });

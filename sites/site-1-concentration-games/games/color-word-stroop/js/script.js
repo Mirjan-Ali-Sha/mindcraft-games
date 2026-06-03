@@ -32,12 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initLives: 3
   };
 
-  // Color Definitions
+  // Expanded Color Definitions (more colors to increase diversity)
   const colorMap = [
     { name: 'Red', hex: '#ef4444' },
     { name: 'Blue', hex: '#3b82f6' },
     { name: 'Green', hex: '#10b981' },
-    { name: 'Yellow', hex: '#eab308' }
+    { name: 'Yellow', hex: '#eab308' },
+    { name: 'Orange', hex: '#f97316' },
+    { name: 'Purple', hex: '#a855f7' },
+    { name: 'Pink', hex: '#ec4899' },
+    { name: 'Cyan', hex: '#06b6d4' },
+    { name: 'Brown', hex: '#a16207' }
   ];
 
   // Game tracking variables
@@ -161,17 +166,34 @@ document.addEventListener('DOMContentLoaded', () => {
     generateChoices();
   }
 
-  // Draw multiple choice buttons
+  // Draw multiple choice buttons (exactly 4 choices including correct color and word meaning distractor)
   function generateChoices() {
     choicesGrid.innerHTML = '';
     
-    // Standard Red, Blue, Green, Yellow options
-    colorMap.forEach(color => {
+    // Start with the correct ink color and the word meaning color
+    const selectedChoices = [currentInkColor.name];
+    if (!selectedChoices.includes(currentMeaningColor.name)) {
+      selectedChoices.push(currentMeaningColor.name);
+    }
+    
+    // Fill up to exactly 4 choices from colorMap
+    const remainingColors = colorMap.filter(c => !selectedChoices.includes(c.name));
+    shuffle(remainingColors);
+    
+    while (selectedChoices.length < 4 && remainingColors.length > 0) {
+      selectedChoices.push(remainingColors.pop().name);
+    }
+    
+    // Shuffle the final list of 4 choice names
+    shuffle(selectedChoices);
+    
+    selectedChoices.forEach(choiceName => {
+      const colorInfo = colorMap.find(c => c.name === choiceName);
       const btn = document.createElement('button');
       btn.className = 'btn btn--secondary stroop-btn';
-      btn.textContent = color.name;
+      btn.textContent = colorInfo.name;
       
-      btn.addEventListener('click', () => handleChoiceSelect(btn, color.name));
+      btn.addEventListener('click', () => handleChoiceSelect(btn, colorInfo.name));
       choicesGrid.appendChild(btn);
     });
   }
@@ -242,6 +264,14 @@ document.addEventListener('DOMContentLoaded', () => {
         engine.end('win');
       }
     }, 400);
+  }
+
+  // Fisher-Yates shuffle helper
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
   }
 
   // Controls bindings

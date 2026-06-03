@@ -164,35 +164,53 @@ canvas {
   display: block;
 }
 
-/* Responsive (Stack elements vertically on small screens) */
+/* Responsive (Keep vertical mirror, stack choices vertically on small screens) */
 @media (max-width: 760px) {
   .mirror-board {
-    flex-direction: column;
-    gap: var(--space-lg);
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    width: 100%;
   }
   .mirror-line {
-    width: 240px;
-    height: 0;
-    border-left: none;
-    border-top: 3px dashed var(--theme-accent);
+    width: 0;
+    height: 240px;
+    border-left: 3px dashed var(--theme-accent);
+    border-top: none;
   }
   .mirror-line-container {
-    padding: var(--space-sm) 0;
+    padding: 0 var(--space-xs);
   }
   .mirror-label {
     margin-top: var(--space-xs);
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: 4px;
   }
   .choices-row {
+    flex-direction: column;
+    gap: var(--space-sm);
     justify-content: center;
-    width: 100%;
+    align-items: center;
   }
   .choice-card {
-    flex: 1;
-    max-width: 150px;
+    padding: var(--space-xs);
+    width: 100%;
+    max-width: 110px;
   }
-  canvas {
+  .shape-card {
+    padding: var(--space-xs);
+    width: 100%;
     max-width: 120px;
-    height: auto;
+  }
+  #target-canvas {
+    width: 100px;
+    height: 100px;
+  }
+  #choice-a-canvas, #choice-b-canvas {
+    width: 90px;
+    height: 90px;
   }
   .game-meta {
     flex-direction: column;
