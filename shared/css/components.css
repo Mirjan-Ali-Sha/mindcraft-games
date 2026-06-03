@@ -184,3 +184,92 @@
 .animate-float {
   animation: float 3s infinite ease-in-out;
 }
+
+/* =========================================
+   MOBILE RESPONSIVE FOUNDATION (≤ 480px)
+   ========================================= */
+@media (max-width: 480px) {
+  /* Compact header */
+  .glass-header {
+    height: 52px;
+  }
+
+  .header-nav .btn--secondary {
+    font-size: 0.95rem;
+    padding: 0.35rem 0.6rem;
+    min-height: 36px;
+  }
+
+  .back-text {
+    display: none;
+  }
+
+  /* Compact stat badges in header */
+  .game-stats {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .stat-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    white-space: nowrap;
+  }
+
+  /* Compact game meta — horizontal row with wrap */
+  .game-meta {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 0.3rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .meta-item {
+    flex: 0 1 auto;
+    font-size: 0.8rem !important;
+    padding: 0.3rem 0.6rem !important;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  /* Tighter game container padding */
+  .game-container {
+    padding: 0.75rem 0.5rem !important;
+  }
+
+  /* Compact game actions */
+  .game-actions {
+    gap: 0.4rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .game-actions .btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    min-height: 40px;
+  }
+
+  /* Smaller instruction text */
+  .game-instruction {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Compact overlay modal */
+  .modal-content {
+    width: 95%;
+  }
+
+  .modal-content h2 {
+    font-size: 1.5rem !important;
+  }
+
+  /* Compact progress bar */
+  .progress-container {
+    height: 5px;
+  }
+}

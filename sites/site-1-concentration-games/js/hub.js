@@ -134,6 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <a href="${game.url}" class="btn btn--primary" style="margin-top: var(--space-md); width: 100%;">Play Now</a>
       `;
+      card.addEventListener('click', () => {
+        window.location.href = game.url;
+      });
       grid.appendChild(card);
     });
   }

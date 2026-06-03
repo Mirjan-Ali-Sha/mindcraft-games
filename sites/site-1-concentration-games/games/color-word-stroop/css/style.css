@@ -113,12 +113,23 @@
   .stroop-word {
     font-size: 2.8rem;
   }
-  .game-meta {
-    flex-direction: column;
-    gap: var(--space-xs);
-    align-items: stretch;
+}
+
+@media (max-width: 480px) {
+  .word-card {
+    padding: var(--space-md) var(--space-sm);
+    margin-bottom: 0.5rem;
+    min-height: 100px;
   }
-  .meta-item {
-    justify-content: center;
+  .stroop-word {
+    font-size: 2.5rem;
+  }
+  .stroop-btn {
+    font-size: 1rem;
+    padding: 0.6rem 0;
+  }
+  .status-banner {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
   }
 }

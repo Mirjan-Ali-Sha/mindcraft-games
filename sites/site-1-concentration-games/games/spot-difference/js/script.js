@@ -1262,6 +1262,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Side by Side toggle for mobile
+  const btnSideBySide = document.getElementById('btn-side-by-side');
+  const canvasWrapper = document.querySelector('.canvas-wrapper');
+  
+  btnSideBySide.addEventListener('click', () => {
+    canvasWrapper.classList.toggle('side-by-side');
+    btnSideBySide.classList.toggle('active');
+  });
+
   // Auto-start game on load
   engine.start();
 });

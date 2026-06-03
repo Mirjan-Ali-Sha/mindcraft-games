@@ -81,13 +81,12 @@ canvas {
 }
 
 /* Mobile responsive fixes */
-@media (max-width: 600px) {
-  .game-meta {
-    flex-direction: column;
-    gap: var(--space-xs);
-    align-items: stretch;
+@media (max-width: 480px) {
+  .status-banner {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
   }
-  .meta-item {
-    justify-content: center;
+  .canvas-wrapper {
+    margin-bottom: 0.5rem;
   }
 }

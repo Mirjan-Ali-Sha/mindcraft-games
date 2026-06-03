@@ -113,12 +113,24 @@ canvas {
   .query-emoji {
     font-size: 2.2rem;
   }
-  .game-meta {
-    flex-direction: column;
-    gap: var(--space-xs);
-    align-items: stretch;
+}
+
+@media (max-width: 480px) {
+  .query-card {
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
   }
-  .meta-item {
-    justify-content: center;
+  .query-emoji {
+    font-size: 2rem;
+  }
+  .query-prefix {
+    font-size: 0.85rem;
+  }
+  .canvas-wrapper {
+    margin-bottom: 0.5rem;
+  }
+  .choice-btn {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
   }
 }

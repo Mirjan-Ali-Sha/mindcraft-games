@@ -212,12 +212,26 @@ canvas {
     width: 90px;
     height: 90px;
   }
-  .game-meta {
-    flex-direction: column;
-    gap: var(--space-xs);
-    align-items: stretch;
+}
+
+@media (max-width: 480px) {
+  .mirror-board {
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
   }
-  .meta-item {
-    justify-content: center;
+  .status-banner {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .mirror-line {
+    height: 160px;
+  }
+  #target-canvas {
+    width: 80px;
+    height: 80px;
+  }
+  #choice-a-canvas, #choice-b-canvas {
+    width: 70px;
+    height: 70px;
   }
 }

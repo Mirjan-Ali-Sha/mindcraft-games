@@ -171,12 +171,28 @@
   .card-back {
     font-size: 1.3rem;
   }
-  .game-meta {
-    flex-direction: column;
-    gap: var(--space-xs);
-    align-items: stretch;
+}
+
+@media (max-width: 480px) {
+  .cards-grid {
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
   }
-  .meta-item {
-    justify-content: center;
+  .card-front {
+    font-size: 1.3rem;
+  }
+  .card-back {
+    font-size: 1rem;
+  }
+  .status-banner {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .query-card {
+    padding: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .query-emoji {
+    font-size: 2rem;
   }
 }
