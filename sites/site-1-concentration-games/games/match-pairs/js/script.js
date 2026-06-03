@@ -30,8 +30,27 @@ document.addEventListener('DOMContentLoaded', () => {
     initLives: 1 // Lives not strictly used here, we use timer & moves
   };
 
-  // Card items pool
-  const emojiPool = ['🍎', '🍌', '🍒', '🍇', '🍉', '🍓', '🍍', '🥥', '🥝', '🍊', '🍋', '🥭', '🥑', '🥦', '🥕', '🌽', '🌶️', '🥔', '🥖', '🥨', '🧀', '🥞', '🍳', '🍕', '🍣', '🍦', '🍩', '🍪'];
+  // Card items pool (120 visually distinct premium emojis)
+  const emojiPool = [
+    // Fruits & Food (30)
+    '🍎', '🍌', '🍒', '🍇', '🍉', '🍓', '🍍', '🥥', '🥝', '🍊', 
+    '🍋', '🥭', '🥑', '🥦', '🥕', '🌽', '🌶️', '🥔', '🥖', '🥨', 
+    '🧀', '🥞', '🍳', '🍕', '🍣', '🍦', '🍩', '🍪', '🍔', '🍟',
+    // Sweet Desserts & Extra Food (10)
+    '🧁', '🍰', '🍫', '🍬', '🍭', '🍯', '🍿', '🌭', '🌮', '🥟',
+    // Animals & Creatures (30)
+    '🐱', '🐶', '🦁', '🐯', '🐻', '🐼', '🐨', '🐵', '🐰', '🦊', 
+    '🦝', '🐮', '🐷', '🐸', '🐙', '🐢', '🐧', '🦆', '🦅', '🦉', 
+    '🦋', '🐝', '🐞', '🐌', '🦀', '🦈', '🐬', '🐳', '🦖', '🦄',
+    // Nature, Weather & Space (20)
+    '☀️', '🌙', '⭐', '☁️', '🌈', '❄️', '🔥', '🌲', '🌵', '🍀', 
+    '🍁', '🌸', '🍄', '🌋', '🌍', '🪐', '☄️', '⚡', '🌊', '🍃',
+    // Travel & Vehicles (10)
+    '🚗', '🚲', '🛵', '✈️', '🚀', '⛵', '🛸', '🚁', '🚆', '🎈',
+    // Objects & Recreation (20)
+    '⏰', '💡', '🔑', '🎁', '👑', '💎', '🔔', '🔮', '🧩', '🧸', 
+    '⚽', '🏀', '🏈', '🎾', '🎯', '🏆', '🎨', '🎸', '🎹', '🎻'
+  ];
   let activeCards = [];
   
   // Board state trackers
@@ -160,8 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     generateCards(true); // Generate flipped cards (visible emojis)
     
-    // Start preview countdown
-    let previewSecondsLeft = 3;
+    // Start preview countdown scaled dynamically based on number of cards/pairs
+    let previewSecondsLeft = Math.max(3, Math.floor(totalPairsNeeded * 0.8) + 2);
     statusBannerEl.textContent = `Memorize: ${previewSecondsLeft}s`;
     
     previewInterval = setInterval(() => {
@@ -194,8 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateCards(initFlipped = false) {
     grid.innerHTML = '';
     
-    // 1. Pick emojis
-    const selectedEmojis = emojiPool.slice(0, totalPairsNeeded);
+    // 1. Pick emojis (randomly select from the full pool copy)
+    const poolCopy = [...emojiPool];
+    shuffle(poolCopy);
+    const selectedEmojis = poolCopy.slice(0, totalPairsNeeded);
     // 2. Double them for matching pairs
     const doubleList = [...selectedEmojis, ...selectedEmojis];
     // 3. Shuffle
