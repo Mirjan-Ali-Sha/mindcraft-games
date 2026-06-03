@@ -1,0 +1,180 @@
+/* Card Flip Memory - Specific Game Styling */
+
+.game-container {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: var(--space-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.meta-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Query card */
+.query-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+  max-width: 440px;
+  padding: var(--space-md);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.query-prefix {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.query-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.status-banner {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--theme-accent);
+  text-shadow: 0 0 10px var(--theme-accent-glow);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+/* 3D Flip Card Matrix Grid */
+.cards-grid {
+  display: grid;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: var(--space-xl);
+}
+
+.card {
+  aspect-ratio: 1/1;
+  perspective: 1000px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform var(--transition-slow);
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glass-glow);
+}
+
+/* Back Face (Faced Down) */
+.card-back {
+  background: linear-gradient(135deg, var(--bg-dark-secondary) 0%, #1e1b4b 100%);
+  color: var(--theme-accent);
+  font-size: 1.8rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.card:hover .card-back {
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 10px var(--theme-accent-glow);
+}
+
+/* Front Face (Revealed Emojis) */
+.card-front {
+  background: var(--glass-bg);
+  transform: rotateY(180deg);
+  font-size: 2.2rem;
+  border-color: var(--theme-accent);
+}
+
+/* Highlight states */
+.card.correct .card-front {
+  border-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.card.wrong .card-front {
+  border-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.15);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+.heart {
+  font-size: 1.1rem;
+  margin-left: 2px;
+}
+
+.heart.empty {
+  filter: grayscale(1);
+  opacity: 0.3;
+}
+
+.stat-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-round);
+  font-size: 0.9rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 500px) {
+  .cards-grid {
+    gap: var(--space-sm);
+  }
+  .card-front {
+    font-size: 1.6rem;
+  }
+  .card-back {
+    font-size: 1.3rem;
+  }
+  .game-meta {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: stretch;
+  }
+  .meta-item {
+    justify-content: center;
+  }
+}

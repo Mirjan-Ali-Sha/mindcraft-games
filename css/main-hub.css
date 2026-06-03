@@ -1,0 +1,199 @@
+/* MindCraft Games - Main Hub Style */
+
+.portal-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Section */
+.portal-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  max-width: 800px;
+  position: relative;
+}
+
+.portal-logo {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #a78bfa 0%, #ec4899 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: var(--space-xs);
+  filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.2));
+}
+
+.portal-tagline {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: var(--space-lg);
+}
+
+/* Stats grid */
+.portal-stats {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-glow);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.stat-val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-lbl {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Categories Grid */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+/* Category Card */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  background: rgba(30, 41, 59, 0.4);
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--card-accent, var(--theme-accent));
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  background: rgba(30, 41, 59, 0.6);
+  border-color: var(--card-accent, var(--theme-accent));
+  box-shadow: 0 10px 25px -10px var(--card-glow, var(--theme-accent-glow));
+}
+
+.category-icon {
+  font-size: 2.2rem;
+  margin-bottom: var(--space-sm);
+  display: inline-block;
+}
+
+.category-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+}
+
+.category-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: var(--space-md);
+  flex-grow: 1;
+}
+
+.category-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-status {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+}
+
+.category-status--active {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.category-status--locked {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  border: 1px solid var(--glass-border);
+}
+
+/* Locked Card styles */
+.category-card--locked {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.category-card--locked:hover {
+  transform: none;
+  box-shadow: var(--glass-glow);
+  border-color: var(--glass-border);
+}
+
+/* Actions footer */
+.hub-footer {
+  margin-top: var(--space-2xl);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  width: 100%;
+  border-top: 1px solid var(--glass-border);
+  padding-top: var(--space-lg);
+}
+
+.hub-footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.hub-footer a:hover {
+  color: var(--theme-accent);
+}
+
+/* Mobile responsive Adjustments */
+@media (max-width: 640px) {
+  .portal-logo {
+    font-size: 2.5rem;
+  }
+  .portal-container {
+    padding: var(--space-xl) var(--space-md);
+  }
+}

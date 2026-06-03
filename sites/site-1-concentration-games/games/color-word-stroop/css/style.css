@@ -1,0 +1,124 @@
+/* Color Word Stroop - Specific Game Styling */
+
+.game-container {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: var(--space-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.meta-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.status-banner {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--theme-accent);
+  text-shadow: 0 0 10px var(--theme-accent-glow);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+/* Word Card */
+.word-card {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-xl) var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+  min-height: 140px;
+  overflow: hidden;
+}
+
+.stroop-word {
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+/* Level 3 Specific - Mirrored/Upside Down */
+.stroop-word.upside-down {
+  transform: rotate(180deg);
+}
+
+.stroop-word.mirrored {
+  transform: scaleX(-1);
+}
+
+/* Choices Grid */
+.stroop-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: var(--space-lg);
+}
+
+.stroop-btn {
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.85rem 0;
+  width: 100%;
+}
+
+.heart {
+  font-size: 1.1rem;
+  margin-left: 2px;
+}
+
+.heart.empty {
+  filter: grayscale(1);
+  opacity: 0.3;
+}
+
+.stat-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-round);
+  font-size: 0.9rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 440px) {
+  .stroop-choices {
+    gap: var(--space-sm);
+  }
+  .stroop-word {
+    font-size: 2.8rem;
+  }
+  .game-meta {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: stretch;
+  }
+  .meta-item {
+    justify-content: center;
+  }
+}

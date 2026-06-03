@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    // Ensure relative paths resolve correctly by redirecting to add trailing slash if missing
+    if (!window.location.pathname.endsWith('/') && !window.location.pathname.match(/\.[a-zA-Z0-9]+$/)) {
+      window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindCraft - Concentration & Focus Games</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Improve your concentration, visual tracking, focus, and multitasking skills with premium responsive cognitive training games. Part of the MindCraft Games suite.">
+  
+  <!-- PWA Setup -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#8b5cf6">
+  <link rel="icon" type="image/png" href="../../shared/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="../../shared/icons/icon-192.png">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="../../shared/css/design-tokens.css">
+  <link rel="stylesheet" href="../../shared/css/components.css">
+  <link rel="stylesheet" href="./css/theme.css">
+</head>
+<body>
+
+  <!-- PWA Install Banner -->
+  <div class="container" style="margin-top: var(--space-md);">
+    <div id="pwa-install-banner" class="install-banner">
+      <div class="install-banner__content">
+        <span class="install-banner__title">Play Offline & Pin to Desktop</span>
+        <span class="install-banner__desc">Install Concentration Games on your phone or desktop for quick access and offline play.</span>
+      </div>
+      <button id="pwa-install-btn" class="btn btn--primary" style="display: none;">Install App</button>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header class="glass-header">
+    <div class="container header-nav">
+      <a href="#" class="header-logo">
+        <span style="font-size: 1.8rem; line-height: 1;">🧠</span>
+        <span>MindCraft</span>
+      </a>
+      <div class="header-actions">
+        <a href="../../index.html" class="btn btn--secondary btn--icon" title="Go to Hub Menu" style="border-radius: 50%;">🏠</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hub-hero">
+    <div class="container">
+      <h1 class="hub-hero__title animate-pulse">Concentration Games</h1>
+      <p class="hub-hero__desc">Train your brain to block out distractions, track multiple visual items simultaneously, and filter visual details with lightning speed.</p>
+    </div>
+  </section>
+
+  <!-- Game Cards Grid -->
+  <main class="container">
+    <div id="games-grid" class="grid-games">
+      <!-- Dynamically filled by hub.js -->
+      <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-2xl); color: var(--text-secondary);">
+        Loading cognitive training games...
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer style="margin-top: var(--space-2xl); padding: var(--space-xl) 0; border-top: 1px solid var(--glass-border); text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+    <div class="container">
+      <p>&copy; 2026 MindCraft. Premium Cognitive Training Suite. Designed with high-performance responsive vanilla code.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../../shared/js/pwa-shell.js"></script>
+  <script src="./js/hub.js"></script>
+</body>
+</html>

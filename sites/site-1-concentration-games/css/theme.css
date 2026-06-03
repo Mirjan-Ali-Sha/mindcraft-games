@@ -1,0 +1,133 @@
+/* Site 1: Concentration Games - Specific Theme Variables */
+
+:root {
+  /* Override global accent color to match site 1 category (Purple/Magenta) */
+  --theme-accent: #8b5cf6;
+  --theme-accent-hover: #a78bfa;
+  --theme-accent-glow: rgba(139, 92, 246, 0.25);
+  --theme-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  
+  /* Additional site-specific styles if needed */
+  --color-category-light: #f5f3ff;
+}
+
+/* Hub page specific layouts */
+.hub-hero {
+  text-align: center;
+  padding: var(--space-2xl) 0 var(--space-xl);
+  background: radial-gradient(circle at top center, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+}
+
+.hub-hero__title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: var(--space-sm);
+  background: var(--theme-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.05em;
+}
+
+.hub-hero__desc {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-lg);
+}
+
+.grid-games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  padding: var(--space-xl) 0;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.game-card__img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: var(--bg-dark-accent);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.game-card:hover .game-card__img {
+  transform: scale(1.03);
+}
+
+.game-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+  color: var(--text-primary);
+}
+
+.game-card__desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  flex-grow: 1;
+}
+
+.game-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.game-card__tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--theme-accent);
+  background: rgba(139, 92, 246, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-round);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Install Banner styles */
+.install-banner {
+  display: none; /* Controlled by JS */
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.1) 100%);
+  border: 1px solid var(--theme-accent);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: float 4s infinite ease-in-out;
+}
+
+.install-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.install-banner__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.install-banner__desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .install-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+  }
+}

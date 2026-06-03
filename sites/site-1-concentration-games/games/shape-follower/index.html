@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shape Follower - MindCraft</title>
+  <link rel="stylesheet" href="../../../../shared/css/design-tokens.css">
+  <link rel="stylesheet" href="../../../../shared/css/components.css">
+  <link rel="stylesheet" href="../../css/theme.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- Game Header -->
+  <header class="glass-header">
+    <div class="container header-nav">
+      <a href="../../index.html" class="btn btn--secondary" style="padding: 0.5rem 1rem; min-height: auto;">
+        &larr; Back to Hub
+      </a>
+      <div class="game-stats">
+        <span class="stat-badge">⭐ Score: <strong id="score-val">0</strong></span>
+        <span class="stat-badge">🏆 Best: <strong id="high-score-val">0</strong></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Game Play Area -->
+  <main class="container game-container">
+    <div class="game-meta">
+      <div class="meta-item">Level: <strong id="level-val">1</strong>/3</div>
+      <div class="meta-item">Sequence: <strong id="seq-current">0</strong>/<strong id="seq-target">5</strong></div>
+      <div class="meta-item" id="lives-container">Lives: <span id="lives-val"></span></div>
+    </div>
+
+    <!-- Status banner instructions -->
+    <div id="game-status-banner" class="status-banner animate-pulse">Watch the sequence!</div>
+
+    <!-- Shapes Pad Grid -->
+    <div id="shapes-grid" class="shapes-grid">
+      <div class="shape-pad pad-red" data-index="0" id="pad-0">
+        <div class="shape-symbol">🔴</div>
+      </div>
+      <div class="shape-pad pad-blue" data-index="1" id="pad-1">
+        <div class="shape-symbol">🟦</div>
+      </div>
+      <div class="shape-pad pad-green" data-index="2" id="pad-2">
+        <div class="shape-symbol">🔺</div>
+      </div>
+      <div class="shape-pad pad-yellow" data-index="3" id="pad-3">
+        <div class="shape-symbol">⭐</div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="game-actions" style="margin-top: var(--space-xl); display: flex; justify-content: center; gap: var(--space-md);">
+      <button id="btn-pause" class="btn btn--secondary">Pause ⏸</button>
+      <button id="btn-restart" class="btn btn--secondary">Restart 🔄</button>
+    </div>
+  </main>
+
+  <!-- Modals & Overlays -->
+  <!-- 1. Pause Overlay -->
+  <div id="overlay-pause" class="overlay">
+    <div class="glass-card modal-content">
+      <h2 style="font-size: 2rem; margin-bottom: var(--space-md);">Game Paused</h2>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">Concentration is key to repeating sequences. Resume when ready.</p>
+      <button id="btn-resume" class="btn btn--primary" style="width: 100%;">Resume Game</button>
+    </div>
+  </div>
+
+  <!-- 2. Game Over Overlay -->
+  <div id="overlay-gameover" class="overlay">
+    <div class="glass-card modal-content">
+      <h2 id="gameover-title" style="font-size: 2.2rem; margin-bottom: var(--space-md); color: var(--color-danger);">Sequence Broken!</h2>
+      <p id="gameover-desc" style="color: var(--text-secondary); margin-bottom: var(--space-lg);">You repeated the sequence incorrectly. Let's try again!</p>
+      <div style="background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); padding: var(--space-md); margin-bottom: var(--space-lg); display: flex; justify-content: space-around;">
+        <div>
+          <span style="display:block; font-size:0.85rem; color:var(--text-muted);">Score</span>
+          <strong id="final-score" style="font-size:1.5rem; color:var(--text-primary);">0</strong>
+        </div>
+        <div>
+          <span style="display:block; font-size:0.85rem; color:var(--text-muted);">Best Score</span>
+          <strong id="best-score" style="font-size:1.5rem; color:var(--theme-accent);">0</strong>
+        </div>
+      </div>
+      <div style="display: flex; gap: var(--space-md);">
+        <button id="btn-retry" class="btn btn--primary" style="flex: 1;">Play Again</button>
+        <a href="../../index.html" class="btn btn--secondary" style="flex: 1;">Exit to Hub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="../../../../shared/js/game-engine.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+</html>

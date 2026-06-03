@@ -1,0 +1,208 @@
+/* Word Finder - Specific Game Styling */
+
+.game-container {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: var(--space-lg);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.meta-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.stat-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-round);
+  font-size: 0.9rem;
+}
+
+/* Clue Card */
+.clue-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 500px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  text-align: left;
+}
+
+.clue-visual {
+  font-size: 3.5rem;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.03);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+}
+
+.clue-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Letter slots display */
+.slots-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: var(--space-xl);
+  min-height: 50px;
+}
+
+.slot {
+  flex: 0 1 44px;
+  min-width: 20px;
+  height: 48px;
+  border-bottom: 3px solid var(--theme-accent);
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  touch-action: manipulation;
+}
+
+.slot.filled {
+  border-bottom-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.slot.error {
+  border-bottom-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.08);
+  animation: pulse 150ms 2;
+}
+
+/* Keyboard */
+.letters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: var(--space-xl);
+  touch-action: manipulation;
+}
+
+.letter-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
+  touch-action: manipulation;
+}
+
+.letter-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 10px var(--theme-accent-glow);
+  transform: translateY(-2px);
+}
+
+.letter-btn:active {
+  transform: translateY(0);
+}
+
+.letter-btn.selected {
+  opacity: 0.3;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: transparent;
+}
+
+/* Heart display */
+.heart {
+  font-size: 1.1rem;
+  margin-left: 2px;
+}
+
+.heart.empty {
+  filter: grayscale(1);
+  opacity: 0.3;
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 500px) {
+  .clue-card {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+  .clue-visual {
+    font-size: 2.75rem;
+    padding: var(--space-sm);
+  }
+  .clue-text {
+    font-size: 1rem;
+  }
+  .letters-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+  }
+  .slot {
+    flex: 0 1 32px;
+    min-width: 18px;
+    height: 38px;
+  }
+  .game-meta {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: stretch;
+  }
+  .meta-item {
+    justify-content: center;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .game-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .game-actions .btn {
+    flex: 1 1 40%;
+    min-height: 44px;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+}

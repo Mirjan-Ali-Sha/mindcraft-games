@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindCraft Games Portal - Brain Training Hub</title>
+  
+  <!-- SEO Best Practices -->
+  <meta name="description" content="Access premium-grade cognitive brain training games. Explore static websites for concentration, memory, attention, logic, and brain teasers.">
+  <link rel="icon" type="image/png" href="./shared/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./shared/icons/icon-192.png">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#6c5ce7">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="./shared/css/design-tokens.css">
+  <link rel="stylesheet" href="./shared/css/components.css">
+  <link rel="stylesheet" href="./css/main-hub.css">
+</head>
+<body>
+
+  <!-- Root Hub Layout -->
+  <div class="portal-container">
+    
+    <!-- Top Header -->
+    <header class="portal-header">
+      <h1 class="portal-logo">MINDCRAFT</h1>
+      <p class="portal-tagline" style="margin-bottom: var(--space-md);">Cognitive Brain Training Portal & Static Games Suite</p>
+      <button id="pwa-install-btn" class="btn btn--primary" style="display: none; margin: 0 auto var(--space-lg) auto; padding: 0.5rem 1.25rem; font-size: 0.85rem; min-height: 38px; gap: var(--space-xs); box-shadow: 0 4px 12px var(--theme-accent-glow); border-color: var(--theme-accent); background: var(--theme-gradient);">
+        📲 Install MindCraft App
+      </button>
+      
+      <!-- Live Dashboard Stats compiled dynamically -->
+      <div class="portal-stats">
+        <div class="stat-card">
+          <span>🧠</span>
+          <div>
+            <span class="stat-lbl">Active Portal</span>
+            <div class="stat-val" style="color: var(--theme-accent);">Concentration</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span>🏆</span>
+          <div>
+            <span class="stat-lbl">Combined Score</span>
+            <div class="stat-val" id="combined-score-val">0</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <span>🎮</span>
+          <div>
+            <span class="stat-lbl">Games Unlocked</span>
+            <div class="stat-val">12/12</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Categories Grid -->
+    <main class="categories-grid">
+      
+      <!-- Site 1: Concentration Games -->
+      <section class="glass-card category-card" style="--card-accent: #6c5ce7; --card-glow: rgba(108, 92, 231, 0.35);">
+        <div class="category-icon">🎯</div>
+        <h2 class="category-title">1. Concentration</h2>
+        <p class="category-desc">Train sustained focus, selective attention, and spatial coordinates scanning with 12 premium games.</p>
+        <div class="category-meta" style="margin-bottom: var(--space-md);">
+          <span>12 Playable Games</span>
+          <span class="category-status category-status--active">Active</span>
+        </div>
+        <a href="./sites/site-1-concentration-games/index.html" class="btn btn--primary" style="width: 100%; border-color: #6c5ce7; background: #6c5ce7;">
+          Open Portal &rarr;
+        </a>
+      </section>
+
+      <!-- Site 2: Memory Games -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #00b894; --card-glow: rgba(0, 184, 148, 0.1);">
+        <div class="category-icon">💾</div>
+        <h2 class="category-title">2. Memory Games</h2>
+        <p class="category-desc">Enhance short-term visual memorization, pattern sequences, and spatial recalls.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 3: Attention Games -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #e17055; --card-glow: rgba(225, 112, 85, 0.1);">
+        <div class="category-icon">👁️</div>
+        <h2 class="category-title">3. Attention Games</h2>
+        <p class="category-desc">Improve visual scanning speed, split attention trackers, and response inhibition.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 4: Logic Games -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #0984e3; --card-glow: rgba(9, 132, 227, 0.1);">
+        <div class="category-icon">🧩</div>
+        <h2 class="category-title">4. Logic Puzzles</h2>
+        <p class="category-desc">Build strategic reasoning, spatial grid dimensions, and coordinate deductions.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 5: Critical Thinking -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #e84393; --card-glow: rgba(232, 67, 147, 0.1);">
+        <div class="category-icon">💡</div>
+        <h2 class="category-title">5. Critical Thinking</h2>
+        <p class="category-desc">Strengthen quick decision analytics, abstract shape matching, and patterns discovery.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 6: Brain Teasers -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #f39c12; --card-glow: rgba(243, 156, 18, 0.1);">
+        <div class="category-icon">⚡</div>
+        <h2 class="category-title">6. Brain Teasers</h2>
+        <p class="category-desc">Test lateral thinking with coordinate riddles, speed arithmetic, and color-words.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 7: Brain Games -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #00cec9; --card-glow: rgba(0, 206, 201, 0.1);">
+        <div class="category-icon">🧪</div>
+        <h2 class="category-title">7. Brain Games</h2>
+        <p class="category-desc">A unified general testing grid for spatial scaling, logic grids, and math pops.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 8: Brain Games for Adults -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #636e72; --card-glow: rgba(99, 110, 114, 0.1);">
+        <div class="category-icon">🎓</div>
+        <h2 class="category-title">8. Adult Brain Games</h2>
+        <p class="category-desc">High complexity Stroop inhibition, complex 3d rotations, and long-term memory spans.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 9: Brain Games for Seniors -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #a29bfe; --card-glow: rgba(162, 155, 254, 0.1);">
+        <div class="category-icon">👵</div>
+        <h2 class="category-title">9. Senior Brain Games</h2>
+        <p class="category-desc">Cognitive maintenance visual spelling, counting trackers, and simple shape matches.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+      <!-- Site 10: ADHD Attention -->
+      <section class="glass-card category-card category-card--locked" style="--card-accent: #ff7675; --card-glow: rgba(255, 118, 117, 0.1);">
+        <div class="category-icon">🎈</div>
+        <h2 class="category-title">10. ADHD Attention</h2>
+        <p class="category-desc">Fun focus engagement games utilizing physics simulation balls and balloon bursts.</p>
+        <div class="category-meta">
+          <span>Planned</span>
+          <span class="category-status category-status--locked">Locked</span>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="hub-footer">
+      <p>&copy; 2026 MindCraft Games. Created in adherence to the <a href="./ARCHITECTURE.md">Architecture Specification</a>.</p>
+    </footer>
+
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="./shared/js/pwa-shell.js"></script>
+  <script>
+    // Accumulate total scores from local storage
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize PWA offline & install shell
+      initPWA('./sw.js');
+      const activeGameIds = [
+        'spot-difference',
+        'ball-tracker',
+        'match-pairs',
+        'word-finder',
+        'face-memory',
+        'bubble-math',
+        'shape-follower',
+        'counting-candy',
+        'card-flip-memory',
+        'color-word-stroop',
+        'spatial-grid-memory',
+        'mirror-match'
+      ];
+      
+      let totalScore = 0;
+      activeGameIds.forEach(id => {
+        const val = parseInt(localStorage.getItem('mindcraft_high_' + id)) || 0;
+        totalScore += val;
+      });
+      
+      document.getElementById('combined-score-val').textContent = totalScore.toLocaleString();
+    });
+  </script>
+
+</body>
+</html>

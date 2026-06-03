@@ -1,0 +1,125 @@
+/* Spatial Grid Memory - Specific Game Styling */
+
+.game-container {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 440px;
+  margin-bottom: var(--space-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.meta-item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.status-banner {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--theme-accent);
+  text-shadow: 0 0 10px var(--theme-accent-glow);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+/* Dynamic CSS Grid Board */
+.spatial-grid {
+  display: grid;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1/1;
+  margin-bottom: var(--space-xl);
+}
+
+.grid-cell {
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--glass-glow);
+}
+
+.grid-cell:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--theme-accent);
+}
+
+.grid-cell.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Light up during memorization */
+.grid-cell.highlighted {
+  background: var(--theme-accent);
+  border-color: var(--theme-accent);
+  box-shadow: 0 0 15px var(--theme-accent-glow);
+}
+
+/* Checked Success State */
+.grid-cell.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+  pointer-events: none;
+}
+
+/* Checked Fail State */
+.grid-cell.wrong {
+  background: var(--color-danger);
+  border-color: var(--color-danger);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+  animation: pulse 120ms 2;
+}
+
+.heart {
+  font-size: 1.1rem;
+  margin-left: 2px;
+}
+
+.heart.empty {
+  filter: grayscale(1);
+  opacity: 0.3;
+}
+
+.stat-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-round);
+  font-size: 0.9rem;
+}
+
+/* Mobile responsive scaling */
+@media (max-width: 440px) {
+  .spatial-grid {
+    gap: var(--space-xs);
+    max-width: 280px;
+  }
+  .game-meta {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: stretch;
+  }
+  .meta-item {
+    justify-content: center;
+  }
+}

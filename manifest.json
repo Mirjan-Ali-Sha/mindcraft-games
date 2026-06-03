@@ -1,0 +1,21 @@
+{
+  "short_name": "MindCraft Hub",
+  "name": "MindCraft Games Portal - Brain Training Hub",
+  "icons": [
+    {
+      "src": "./shared/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./shared/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0f172a",
+  "theme_color": "#6c5ce7",
+  "display": "standalone",
+  "orientation": "portrait-primary"
+}
