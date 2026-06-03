@@ -1150,9 +1150,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Helper to handle snapping taps and preventing drag click triggers on canvases
+  function bindTapHandler(canvas, handler) {
+    let pointerStart = null;
+    
+    canvas.addEventListener('pointerdown', (e) => {
+      pointerStart = {
+        x: e.clientX,
+        y: e.clientY,
+        time: Date.now()
+      };
+    });
+    
+    canvas.addEventListener('pointerup', (e) => {
+      if (!pointerStart) return;
+      const dx = e.clientX - pointerStart.x;
+      const dy = e.clientY - pointerStart.y;
+      const dist = Math.hypot(dx, dy);
+      const elapsed = Date.now() - pointerStart.time;
+      
+      // If finger moved less than 10 pixels and was down for less than 300ms, it's a valid tap
+      if (dist < 10 && elapsed < 300) {
+        handler(e);
+      }
+      pointerStart = null;
+    });
+    
+    canvas.addEventListener('pointercancel', () => {
+      pointerStart = null;
+    });
+  }
+
   // Bind clicks on both left and right canvases
-  canvasLeft.addEventListener('click', (e) => handleCanvasClick(e, canvasLeft));
-  canvasRight.addEventListener('click', (e) => handleCanvasClick(e, canvasRight));
+  bindTapHandler(canvasLeft, (e) => handleCanvasClick(e, canvasLeft));
+  bindTapHandler(canvasRight, (e) => handleCanvasClick(e, canvasRight));
 
   // Controls UI Action Binds
   btnPause.addEventListener('click', () => engine.pause());

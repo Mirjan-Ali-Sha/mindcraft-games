@@ -55,6 +55,9 @@
   cursor: pointer;
   transition: all var(--transition-fast);
   box-shadow: var(--glass-glow);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .grid-cell:hover {

@@ -76,6 +76,8 @@
   perspective: 1000px;
   cursor: pointer;
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .card-inner {

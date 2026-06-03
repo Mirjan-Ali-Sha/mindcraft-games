@@ -108,6 +108,9 @@
   text-align: center;
   background: rgba(15, 23, 42, 0.4);
   transition: all var(--transition-fast);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .choice-card:hover {

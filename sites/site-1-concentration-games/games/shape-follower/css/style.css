@@ -60,6 +60,8 @@
   box-shadow: var(--glass-glow);
   transition: all var(--transition-fast);
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .shape-pad.disabled {

@@ -356,8 +356,38 @@ document.addEventListener('DOMContentLoaded', () => {
     animFrameId = requestAnimationFrame(loop);
   }
 
+  // Helper to handle snapping taps and preventing drag click triggers on canvas
+  function bindTapHandler(canvasElement, handler) {
+    let pointerStart = null;
+    
+    canvasElement.addEventListener('pointerdown', (e) => {
+      pointerStart = {
+        x: e.clientX,
+        y: e.clientY,
+        time: Date.now()
+      };
+    });
+    
+    canvasElement.addEventListener('pointerup', (e) => {
+      if (!pointerStart) return;
+      const dx = e.clientX - pointerStart.x;
+      const dy = e.clientY - pointerStart.y;
+      const dist = Math.hypot(dx, dy);
+      const elapsed = Date.now() - pointerStart.time;
+      
+      if (dist < 10 && elapsed < 300) {
+        handler(e);
+      }
+      pointerStart = null;
+    });
+    
+    canvasElement.addEventListener('pointercancel', () => {
+      pointerStart = null;
+    });
+  }
+
   // Click Handler
-  canvas.addEventListener('click', (e) => {
+  bindTapHandler(canvas, (e) => {
     if (!engine.state.isPlaying || engine.state.isPaused) return;
 
     const rect = canvas.getBoundingClientRect();
